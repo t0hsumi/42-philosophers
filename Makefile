@@ -1,4 +1,4 @@
-NAME = push_swap
+NAME = philo
 
 SRC_DIR = srcs/
 OBJ_DIR = ojbs/
