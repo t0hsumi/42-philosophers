@@ -1,8 +1,8 @@
 #include <philosophers.h>
 
-int destroy_table(t_table *table)
+int	destroy_table(t_table *table)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	free(table->philos);
@@ -12,5 +12,5 @@ int destroy_table(t_table *table)
 	free(table->forks);
 	table->forks = NULL;
 	pthread_mutex_destroy(&table->print);
-	return 1;
+	return (1);
 }

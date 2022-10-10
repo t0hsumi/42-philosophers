@@ -1,22 +1,23 @@
 #include <philosophers.h>
 
-int ft_error(char *msg)
+int	ft_error(char *msg)
 {
 	printf("%s\n", msg);
-	return 1;
+	return (1);
 }
 
-long long m_time(void)
+long long	m_time(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void print_actions(t_philo *philo, int msg)
+void	print_actions(t_philo *philo, int msg)
 {
-	long long time;
+	long long	time;
+
 	pthread_mutex_lock(&philo->table->print);
 	if (!philo->table->is_dead)
 	{
