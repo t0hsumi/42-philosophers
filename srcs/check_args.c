@@ -6,7 +6,7 @@
 /*   By: tohsumi <tohsumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:27:42 by tohsumi           #+#    #+#             */
-/*   Updated: 2022/10/10 18:27:42 by tohsumi          ###   ########.fr       */
+/*   Updated: 2022/10/10 18:48:10 by tohsumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	check_args(int argc, char **argv)
 		printf("%s\n", USEERR);
 		return (1);
 	}
-	if (ft_atoi(argv[1]) == LONG_MIN || ft_atoi(argv[2]) == LONG_MIN \
-			|| ft_atoi(argv[3]) == LONG_MIN || ft_atoi(argv[4]) == LONG_MIN)
+	if (ft_atoi(argv[1]) < 0 || ft_atoi(argv[2]) < 0 \
+			|| ft_atoi(argv[3]) < 0 || ft_atoi(argv[4]) < 0)
 	{
 		printf("%s\n", USEERR);
 		return (1);
 	}
-	if (argc == 6 && ft_atoi(argv[5]) == LONG_MIN)
+	if (argc == 6 && ft_atoi(argv[5]) < 0)
 	{
 		printf("%s\n", USEERR);
 		return (1);
