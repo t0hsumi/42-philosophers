@@ -5,7 +5,7 @@ static void *simulation(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2)
+	if (!(philo->id % 2))
 		usleep(200);
 	while (1)
 	{

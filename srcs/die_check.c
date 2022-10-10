@@ -27,7 +27,6 @@ static void observe(t_table *table)
 			if (table->time_d < m_time() - (table->philos + i)->last_eat)
 			{
 				print_actions(table->philos + i, PDIED);
-				table->is_dead = true;
 			}
 		}
 	}
@@ -44,7 +43,7 @@ void *die_check(void *arg)
 	table = (t_table *)arg;
 	while (1)
 	{
-		usleep(200);
+		usleep(100);
 		if (table->is_dead)
 			break;
 		if (is_full_up(table))

@@ -1,7 +1,6 @@
 #include <philosophers.h>
-#include <pthread.h>
 
-void destroy_table(t_table *table)
+int destroy_table(t_table *table)
 {
 	int i;
 
@@ -12,4 +11,6 @@ void destroy_table(t_table *table)
 		pthread_mutex_destroy(table->forks + i);
 	free(table->forks);
 	table->forks = NULL;
+	pthread_mutex_destroy(&table->print);
+	return 1;
 }

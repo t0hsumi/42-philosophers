@@ -14,12 +14,26 @@ long long m_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void m_sleep(int time)
+void print_actions(t_philo *philo, int msg)
 {
-	usleep(time * 1000);
-}
-
-void print_actions(t_philo *philo, char *msg)
-{
-	printf("%lld %d %s\n", m_time(), philo->id, msg);
+	long long time;
+	pthread_mutex_lock(&philo->table->print);
+	if (!philo->table->is_dead)
+	{
+		time = m_time() - philo->table->start;
+		if (msg == PFORK)
+			printf("%lld %d has taken a fork\n", time, philo->id);
+		else if (msg == PEAT)
+			printf("%lld %d is eating\n", time, philo->id);
+		else if (msg == PSLEEP)
+			printf("%lld %d is sleeping\n", time, philo->id);
+		else if (msg == PTHINK)
+			printf("%lld %d is thinking\n", time, philo->id);
+		else
+		{
+			printf("%lld %d died\n", time, philo->id);
+			philo->table->is_dead = true;
+		}
+	}
+	pthread_mutex_unlock(&philo->table->print);
 }

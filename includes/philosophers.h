@@ -33,6 +33,7 @@ typedef struct s_table
 	long long start;
 	t_philo *philos;
 	pthread_mutex_t *forks;
+	pthread_mutex_t print;
 } t_table;
 
 # define USEERR "[usage] ./philo number_of_philosophers \
@@ -44,22 +45,24 @@ time_to_die time_to_eat time_to_sleep \
 # define ETHREAD "pthread_create() failed"
 # define EJOIN "pthread_join() failed"
 
-# define PFORK "has taken a fork"
-# define PEAT "is eating"
-# define PTHINK "is thinking"
-# define PSLEEP "is sleeping"
-# define PDIED "dead"
+enum e_actions
+{
+	PFORK,
+	PEAT,
+	PTHINK,
+	PSLEEP,
+	PDIED
+};
 
 int check_args(int argc, char **argv);
 
 int init_table(int argc, char **argv, t_table *table);
 
-void destroy_table(t_table *table);
+int destroy_table(t_table *table);
 long	ft_atoi(const char *nptr);
 int ft_error(char *msg);
 long long m_time(void);
-void print_actions(t_philo *philo, char *msg);
-void m_sleep(int time);
+void print_actions(t_philo *philo, int msg);
 
 void philo_think(t_philo *philo);
 void philo_sleep(t_philo *philo);

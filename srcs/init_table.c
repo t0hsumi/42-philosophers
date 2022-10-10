@@ -38,6 +38,8 @@ static int allocate(t_table *table)
 	while (++i < table->n_philos)
 		if (pthread_mutex_init(table->forks + i, NULL))
 			return ft_error(EMUTEX);
+	if (pthread_mutex_init(&table->print, NULL))
+		return ft_error(EMUTEX);
 	return 0;
 }
 
@@ -46,14 +48,14 @@ int init_table(int argc, char **argv, t_table *table)
 	table->n_philos = ft_atoi(argv[1]);
 	table->time_d = ft_atoi(argv[2]);
 	table->time_e = ft_atoi(argv[3]);
-	table->time_sleep = ft_atoi(argv[4]);
+	table->time_s = ft_atoi(argv[4]);
 	if (argc == 6)
 		table->n_time_must_eat = ft_atoi(argv[5]);
 	else
 		table->n_time_must_eat = 0;
 	table->is_dead = false;
 	if (allocate(table))
-		return 1;
+		return destroy_table(table);
 	init_philosophers(table);
 	return 0;
 }
